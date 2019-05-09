@@ -1,0 +1,14 @@
+RewriteEngine On
+
+#Redirect /index.php to /  #(optional, but recommended I guess)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.php
+RewriteRule ^index.php/?(.*)$ $1 [R=301,L]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|public|css|scss|js|robots\.txt)
+
+#GOTO:  'https://gist.github.com/RaVbaker/2254618' to learn how to rewrite .htaccess
+
+RewriteRule ^(.*)$ ./south/web/index.php?/$1 [L,QSA]
